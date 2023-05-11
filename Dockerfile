@@ -18,7 +18,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN cd /var/www/html && composer install --no-interaction
 
 # Copiar el archivo de entorno de Laravel para pruebas
-COPY .env /var/www/html/.env
+#COPY .env /var/www/html/.env
 
 # Copiar el archivo de entorno de Laravel para pruebas
 COPY .env.testing /var/www/html/.env.testing
