@@ -30,14 +30,8 @@ jobs:
       - name: Wait for container to start
         run: sleep 5
 
-      - name: Configure MySQL for tests
-        run: |
-          cp .env.testing .env
-          sed -i 's/DB_HOST=.*/DB_HOST=mysql/g' .env
-          sed -i 's/DB_DATABASE=.*/DB_DATABASE=myapp_test/g' .env
-          sed -i 's/DB_USERNAME=.*/DB_USERNAME=myuser/g' .env
-          sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=mypassword/g' .env
-
+      - name: Run migrations
+        run: docker exec -e APP_ENV=testing bitcoin-app-container php artisan migrate --database=mysql_testing
 
       - name: Run tests
         run: docker exec -e APP_ENV=testing bitcoin-app-container vendor/bin/phpunit
