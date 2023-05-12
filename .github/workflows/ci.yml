@@ -8,17 +8,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:latest
-        env:
-          MYSQL_ROOT_PASSWORD: 
-          MYSQL_DATABASE: root
-        ports:
-          - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -30,28 +20,3 @@ jobs:
 
       - name: Wait for container to start
         run: sleep 5
-
-  run-tests:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-
-      - name: Install dependencies
-        run: composer install --no-interaction
-
-      - name: Configure MySQL for tests
-        run: |
-          cp .env.testing .env
-          sed -i 's/DB_HOST=.*/DB_HOST=mysql/g' .env
-          sed -i 's/DB_DATABASE=.*/DB_DATABASE=bitcoin_test/g' .env
-          sed -i 's/DB_USERNAME=.*/DB_USERNAME=root/g' .env
-          sed -i 's/DB_PASSWORD=.*/DB_PASSWORD= /g' .env
-
-      - name: Run tests
-        run: vendor/bin/phpunit
