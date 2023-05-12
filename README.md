@@ -10,17 +10,17 @@
 
 5. Ejecutar pruebas con el comando
 
- ´´´
+ ```
  php artisan test
 
- ´´´
+ ```
 
 6. Para ejecutar de forma local ejecutar el comando
 
-´´´
+```
  php artisan serve
 
-´´´
+```
 
 Url pública 
 
