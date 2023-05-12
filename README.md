@@ -8,14 +8,20 @@
 
 4. Copiar .env.example a .env
 
-5. Ejecutar pruebas con el comando
+6. Para entorno local crear base de datos y ejecutar las migraciones
+
+ ```
+  php artisan migrate
+ ```
+
+7. Ejecutar pruebas con el comando
 
  ```
  php artisan test
 
  ```
 
-6. Para ejecutar de forma local ejecutar el comando
+8. Para ejecutar de forma local ejecutar el comando
 
 ```
  php artisan serve
