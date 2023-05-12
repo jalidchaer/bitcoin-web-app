@@ -14,14 +14,10 @@ RUN chown -R www-data:www-data /var/www/html \
 # Instala Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Instalar las dependencias de Laravel
+# Instala las dependencias de Laravel
 RUN cd /var/www/html && composer install --no-interaction
 
-# Copiar el archivo de entorno de Laravel para pruebas
-#COPY .env /var/www/html/.env
-
-# Copiar el archivo de entorno de Laravel para pruebas
-COPY .env.testing /var/www/html/.env
+COPY .env /var/www/html/.env
 
 # Configura el archivo de entorno de Laravel
 RUN php /var/www/html/artisan key:generate
