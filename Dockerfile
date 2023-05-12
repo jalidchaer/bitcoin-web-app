@@ -17,7 +17,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Instala las dependencias de Laravel
 RUN cd /var/www/html && composer install --no-interaction
 
-COPY .env /var/www/html/.env
+#COPY .env /var/www/html/.env
+
+# Copia el archivo de entorno de Laravel para pruebas
+COPY .env.testing /var/www/html/.env.testing
 
 # Configura el archivo de entorno de Laravel
 RUN php /var/www/html/artisan key:generate
