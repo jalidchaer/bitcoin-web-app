@@ -23,7 +23,7 @@ RUN cd /var/www/html && composer install --no-interaction
 COPY .env.testing /var/www/html/.env.testing
 
 # Configura el archivo de entorno de Laravel
-RUN php /var/www/html/artisan key:generate
+#RUN php /var/www/html/artisan key:generate
 
 # Expone el puerto 80
 EXPOSE 80
